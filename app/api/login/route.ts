@@ -1,7 +1,6 @@
 import { siteConfig } from "@/config/site";
 import { Ilogin, IUserSession } from "@/types";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
