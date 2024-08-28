@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 export default function Login() {
   const router = useRouter();
 
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -21,15 +22,15 @@ export default function Login() {
       email,
       password,
     };
-    console.info("login", login);
+    setLoading(true);
     const response = await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify(login),
     });
-    console.info("response.ok", response.ok);
     if (!response.ok) {
       const errorResponse = await response.json();
       setError(errorResponse.error);
+      setLoading(false);
     } else {
       router.push("/home");
     }
@@ -77,7 +78,7 @@ export default function Login() {
               </p>
             )}
 
-            <Button color="primary" type="submit">
+            <Button color="primary" type="submit" isDisabled={loading}>
               Log In
             </Button>
           </Card>
