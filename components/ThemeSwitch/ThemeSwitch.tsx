@@ -79,3 +79,5 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
     </Component>
   );
 };
+
+export default ThemeSwitch;
