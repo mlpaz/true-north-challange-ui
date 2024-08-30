@@ -1,14 +1,16 @@
 "use client";
-import { Ilogin } from "@/types";
+import { ErrorResponse, Ilogin } from "@/types";
 import { Button } from "@nextui-org/button";
 import { Card } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { UserCreditContext } from "@/components/UserCreditProvider";
 
 export default function Login() {
   const router = useRouter();
+  const { newCredit }: any = useContext(UserCreditContext);
 
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -27,10 +29,12 @@ export default function Login() {
       body: JSON.stringify(login),
     });
     if (!response.ok) {
-      const errorResponse = await response.json();
-      setError(errorResponse.error);
+      const errorResponse: ErrorResponse = await response.json();
+      setError(errorResponse.message);
       setLoading(false);
     } else {
+      const creditResponse = await response.json();
+      newCredit(creditResponse.credit);
       router.push("/home");
     }
   };
@@ -47,41 +51,35 @@ export default function Login() {
   return (
     <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <form className="min-w-[400px]" onSubmit={loginHandler}>
-          <Card className="p-4">
-            <h1 className="text-2xl mb-6 text-center">True North Challenge</h1>
-            <Input
-              className="mb-4"
-              type="email"
-              label="Email"
-              labelPlacement="outside"
-              isInvalid={isInvalid}
-              color={isInvalid ? "danger" : "default"}
-              errorMessage="Please enter a valid email"
-              onValueChange={setEmail}
-              required
-            />
-            <Input
-              className="mb-8"
-              type="password"
-              label="Password"
-              labelPlacement="outside"
-              onChange={(e: any) => {
-                setPassword(e.target.value);
-              }}
-              required
-            />
-            {error && (
-              <p className="text-center mb-4 mt-[-1rem] text-red-600">
-                {error}
-              </p>
-            )}
+        <Card className="p-4 min-w-[400px]" onSubmit={loginHandler} as="form">
+          <h1 className="text-2xl mb-6 text-center">True North Challenge</h1>
+          <Input
+            className="mb-4"
+            type="email"
+            label="Email"
+            labelPlacement="outside"
+            isInvalid={isInvalid}
+            color={isInvalid ? "danger" : "default"}
+            errorMessage="Please enter a valid email"
+            onValueChange={setEmail}
+            required
+          />
+          <Input
+            className="mb-8"
+            type="password"
+            label="Password"
+            labelPlacement="outside"
+            onValueChange={setPassword}
+            required
+          />
+          {error && (
+            <p className="text-center mb-4 mt-[-1rem] text-red-600">{error}</p>
+          )}
 
-            <Button color="primary" type="submit" isDisabled={loading}>
-              Log In
-            </Button>
-          </Card>
-        </form>
+          <Button color="primary" type="submit" isDisabled={loading}>
+            Log In
+          </Button>
+        </Card>
       </section>
     </main>
   );

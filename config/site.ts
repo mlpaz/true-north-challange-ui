@@ -7,15 +7,15 @@ export const siteConfig = {
   navItems: [
     {
       label: "Calculator",
-      href: "/calculator",
+      href: "/home/operation/math",
     },
     {
       label: "String Generator",
-      href: "/string-generator",
+      href: "/home/operation/string-generator",
     },
     {
       label: "Records",
-      href: "/records",
+      href: "/home/records",
     },
   ],
   links: {

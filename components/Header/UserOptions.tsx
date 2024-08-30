@@ -32,7 +32,7 @@ export const UserOptions = ({ fistLetter }: { fistLetter: string }) => {
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions" variant="flat">
         <DropdownItem
-          startContent={<ExitIcon size={20} />}
+          startContent={<ExitIcon size={20} className="mr-2" />}
           key="singOut"
           onClick={singOut}
         >

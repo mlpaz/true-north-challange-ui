@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { Ilogin, IUserSession } from "@/types";
+import { ErrorResponse, Ilogin, IUserSession } from "@/types";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -14,18 +14,17 @@ export async function POST(req: NextRequest) {
     },
     body: JSON.stringify(login),
   });
-
+  const body: IUserSession = await response.json();
   if (response.ok) {
-    const body: IUserSession = await response.json();
     cookieMng.set("session", JSON.stringify(body), {
       httpOnly: true,
       secure: true,
     });
   } else {
-    return NextResponse.json(
-      { error: "Invalid Email or Password." },
-      { status: 401 }
-    );
+    const errorResponse: ErrorResponse = {
+      message: "Invalid Email or Password.",
+    };
+    return NextResponse.json(errorResponse, { status: 401 });
   }
-  return NextResponse.json({});
+  return NextResponse.json({ credit: body.credit });
 }

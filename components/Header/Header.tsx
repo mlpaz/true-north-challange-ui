@@ -1,10 +1,4 @@
 import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@nextui-org/dropdown";
-import {
   Navbar as NextUINavbar,
   NavbarContent,
   NavbarBrand,
@@ -14,13 +8,12 @@ import { link as linkStyles } from "@nextui-org/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
 import { Logo } from "@/components/icons";
 import { IUserSession } from "@/types";
-import { Avatar } from "@nextui-org/avatar";
 import { cookies } from "next/headers";
 import { emptyObj } from "@/utils/object";
 import UserOptions from "./UserOptions";
+import { ThemeSwitch } from "../ThemeSwitch";
 
 export const Header = () => {
   const cookieStore = cookies();
@@ -32,7 +25,6 @@ export const Header = () => {
     fistLetter = session?.email?.charAt(0);
   }
 
-  console.info("fistLetter ", fistLetter);
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -61,7 +53,6 @@ export const Header = () => {
           </ul>
         )}
       </NavbarContent>
-
       <NavbarContent
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
