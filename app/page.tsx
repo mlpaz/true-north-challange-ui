@@ -3,7 +3,6 @@ import { Ilogin } from "@/types";
 import { Button } from "@nextui-org/button";
 import { Card } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
-import { redirect } from "next/dist/server/api-utils";
 import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

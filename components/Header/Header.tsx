@@ -1,4 +1,10 @@
 import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@nextui-org/dropdown";
+import {
   Navbar as NextUINavbar,
   NavbarContent,
   NavbarBrand,
@@ -14,6 +20,7 @@ import { IUserSession } from "@/types";
 import { Avatar } from "@nextui-org/avatar";
 import { cookies } from "next/headers";
 import { emptyObj } from "@/utils/object";
+import UserOptions from "./UserOptions";
 
 export const Header = () => {
   const cookieStore = cookies();
@@ -59,20 +66,13 @@ export const Header = () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        {!emptyObj(session) && (
-          <NavbarItem className="hidden sm:flex gap-2">
-            <Avatar
-              radius="sm"
-              showFallback
-              name={`${fistLetter.toUpperCase()}`}
-              size="sm"
-              className="text-lg"
-            />
-            <p className="my-auto ml-1">{session?.email}</p>
-          </NavbarItem>
-        )}
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
+        </NavbarItem>
+
+        <NavbarItem className="hidden sm:flex gap-2" as="div">
+          <p className="my-auto mr-2">{session?.email}</p>
+          <UserOptions fistLetter={fistLetter} />
         </NavbarItem>
       </NavbarContent>
     </NextUINavbar>
