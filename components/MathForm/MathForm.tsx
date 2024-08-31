@@ -28,42 +28,40 @@ function MathForm({ handler }: { handler: any }) {
   };
 
   return (
-    <div>
-      <Card className="p-3" as="form" onSubmit={operationHandler}>
-        <h1 className="text-2xl mb-5 text-center">Calculator</h1>
+    <Card className="p-3" as="form" onSubmit={operationHandler}>
+      <h1 className="text-2xl mb-5 text-center">Calculator</h1>
+      <Input
+        className="mb-3"
+        type="number"
+        label="Value X "
+        labelPlacement="outside"
+        onValueChange={(value: string) => setX(+value)}
+        required={true}
+      />
+      <Select
+        label="Select an operation"
+        className={`max-w-xs ${isNotSquareRoot ? "mb-3" : "mb-5"}`}
+        labelPlacement="outside"
+        onChange={(e) => setOperation(e.target.value as OperationType)}
+      >
+        {mathOptions.map((mathOption) => (
+          <SelectItem key={mathOption.key}>{mathOption.label}</SelectItem>
+        ))}
+      </Select>
+      {isNotSquareRoot && (
         <Input
-          className="mb-3"
+          className="mb-5"
           type="number"
-          label="Value X "
+          label="Value Y "
           labelPlacement="outside"
-          onValueChange={(value: string) => setX(+value)}
-          required={true}
+          onValueChange={(value: string) => setY(+value)}
+          required
         />
-        <Select
-          label="Select an operation"
-          className={`max-w-xs ${isNotSquareRoot ? "mb-3" : "mb-5"}`}
-          labelPlacement="outside"
-          onChange={(e) => setOperation(e.target.value as OperationType)}
-        >
-          {mathOptions.map((mathOption) => (
-            <SelectItem key={mathOption.key}>{mathOption.label}</SelectItem>
-          ))}
-        </Select>
-        {isNotSquareRoot && (
-          <Input
-            className="mb-5"
-            type="number"
-            label="Value Y "
-            labelPlacement="outside"
-            onValueChange={(value: string) => setY(+value)}
-            required
-          />
-        )}
-        <Button color="primary" type="submit" isDisabled={loading}>
-          Calculate
-        </Button>
-      </Card>
-    </div>
+      )}
+      <Button color="primary" type="submit" isDisabled={loading}>
+        Calculate
+      </Button>
+    </Card>
   );
 }
 

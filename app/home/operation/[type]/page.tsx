@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { Divider } from "@nextui-org/divider";
+import StringGeneratorForm from "@/components/StringGeneratorForm";
 
 const MATH: string = "math";
 const STRING_GENERATOR: string = "string-generator";
@@ -45,17 +46,20 @@ export default function Operation({
         router.push("/");
       }
       if (statusCode == NOT_ACCEPTABLE_CODE) {
-        console.info;
         setInsuficientStatus();
       }
       const errorResponse: ErrorResponse = await response.json();
       console.info("error", error);
       setError(errorResponse.message);
+      setResult("");
+      setAmount("");
     } else {
-      const creditResponse: OperationResponse = await response.json();
-      newCredit(creditResponse.userBalance);
-      setResult(creditResponse.operationResponse);
-      setAmount(creditResponse.amount);
+      const operationResponse: OperationResponse = await response.json();
+      console.info("operationResponse", operationResponse);
+      newCredit(operationResponse.userBalance);
+      setResult(operationResponse.operationResponse);
+      setAmount(operationResponse.amount);
+      setError("");
     }
   };
   console.info("userCredit", userCredit);
@@ -76,20 +80,24 @@ export default function Operation({
       </Card>
       {MATH === params.type && <MathForm handler={operationHandler} />}
 
+      {STRING_GENERATOR === params.type && (
+        <StringGeneratorForm handler={operationHandler} />
+      )}
+
       {result && (
         <Card
           className="py-2 px-6 border-none bg-background/60 dark:bg-default-100/50 inline mb-6"
           isBlurred
           shadow="sm"
         >
-          <div className="w-fit mx-auto">
-            <b className="text-gray-500"> Result : </b>
-            <span className="text-blue-500">{result}</span>
+          <div className="w-fit mx-auto flex">
+            <b className="text-gray-500 mr-2"> Result: </b>
+            <p className="text-blue-500 whitespace-pre-line">{result}</p>
           </div>
           <Divider className="my-2" />
           <div>
             <b className="text-gray-500"> Operation Amount : </b>
-            <span className="text-blue-500">$ {amount}</span>
+            <p className="text-blue-500 inline">$ {amount}</p>
           </div>
         </Card>
       )}

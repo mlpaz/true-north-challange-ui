@@ -24,12 +24,12 @@ export type MathInput = {
 };
 
 export type GenerateStringInput = {
-  num: number;
-  length: number;
-  unique: boolean;
-  upperLetter: boolean;
-  lowerLetter: boolean;
-  digits: boolean;
+  number?: number;
+  length?: number;
+  unique?: boolean;
+  upperLetter?: boolean;
+  lowerLetter?: boolean;
+  digits?: boolean;
 };
 
 export type OperationRequest = {
