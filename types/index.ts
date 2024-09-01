@@ -54,3 +54,26 @@ export type ErrorResponse = {
   message: string;
   details?: string;
 };
+
+export type Pagination<T> = {
+  content: T[];
+  totalElements: number;
+};
+export type Record = {
+  id: UUID;
+  userBalance: number;
+  amount: number;
+  operationResponse: string;
+  date: Date;
+  type: string;
+};
+
+export type RecordApi = {
+  id: UUID;
+  userId: UUID;
+  userBalance: number;
+  amount: number;
+  operationResponse: string;
+  date: Date;
+  operation: { id: UUID; type: string; cost: number };
+};

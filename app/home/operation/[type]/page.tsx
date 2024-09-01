@@ -49,23 +49,19 @@ export default function Operation({
         setInsuficientStatus();
       }
       const errorResponse: ErrorResponse = await response.json();
-      console.info("error", error);
       setError(errorResponse.message);
       setResult("");
-      setAmount("");
+      setAmount(0);
     } else {
       const operationResponse: OperationResponse = await response.json();
-      console.info("operationResponse", operationResponse);
       newCredit(operationResponse.userBalance);
       setResult(operationResponse.operationResponse);
       setAmount(operationResponse.amount);
       setError("");
     }
   };
-  console.info("userCredit", userCredit);
   const textColorClass =
     userCredit?.insuficient == true ? "text-red-600" : "text-blue-600";
-  console.info(textColorClass);
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <Card

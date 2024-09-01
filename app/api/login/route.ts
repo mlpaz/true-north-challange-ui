@@ -6,7 +6,6 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const cookieMng = cookies();
   const login: Ilogin = await req.json();
-  console.info("login ", login);
   const response = await fetch(`${siteConfig.apiBaseUrL}/api/v1/user/login`, {
     method: "POST",
     headers: {
