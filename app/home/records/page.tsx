@@ -217,7 +217,7 @@ export default function Record() {
           <TableColumn key="userBalance" allowsSorting={true}>
             BALANCE
           </TableColumn>
-          <TableColumn>AMOUNT</TableColumn>
+          <TableColumn key="amount">AMOUNT</TableColumn>
           <TableColumn key="date" allowsSorting={true}>
             DATE
           </TableColumn>
