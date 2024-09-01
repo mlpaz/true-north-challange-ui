@@ -76,9 +76,9 @@ export const ExitIcon = ({
     aria-hidden="true"
     focusable="false"
     height={size || height}
+    width={size || width}
     role="presentation"
     viewBox="0 0 512 512"
-    width={size || width}
     {...props}
   >
     <path
@@ -171,6 +171,101 @@ export const EyeIcon = ({
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}
+    />
+  </svg>
+);
+
+export const AddIcon = ({
+  size = 16,
+  width,
+  height,
+  ...props
+}: IconSvgProps): React.ReactElement => (
+  <svg
+    viewBox="0 0 448 512"
+    height={size || height}
+    width={size || width}
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"
+    />
+  </svg>
+);
+
+export const SubstractionIcon = ({
+  size = 16,
+  width,
+  height,
+  ...props
+}: IconSvgProps) => (
+  <svg
+    viewBox="0 0 448 512"
+    height={size || height}
+    width={size || width}
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"
+    />
+  </svg>
+);
+
+export const MultiplicationIcon = ({
+  size = 16,
+  width,
+  height,
+  ...props
+}: IconSvgProps) => (
+  <svg
+    viewBox="0 0 384 512"
+    height={size || height}
+    width={size || width}
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+    />
+  </svg>
+);
+
+export const DivisionIcon = ({
+  size = 16,
+  width,
+  height,
+  ...props
+}: IconSvgProps) => (
+  <svg
+    viewBox="0 0 448 512"
+    height={size || height}
+    width={size || width}
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M272 96a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 320a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM400 288c17.7 0 32-14.3 32-32s-14.3-32-32-32L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l352 0z"
+    />
+  </svg>
+);
+
+export const SquareRootIcon = ({
+  size = 16,
+  width,
+  height,
+  ...props
+}: IconSvgProps) => (
+  <svg
+    viewBox="0 0 576 512"
+    height={size || height}
+    width={size || width}
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M282.6 78.1c8-27.3 33-46.1 61.4-46.1l200 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L344 96 238.7 457c-3.6 12.3-14.1 21.2-26.8 22.8s-25.1-4.6-31.5-15.6L77.6 288 32 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l45.6 0c22.8 0 43.8 12.1 55.3 31.8l65.2 111.8L282.6 78.1zM393.4 233.4c12.5-12.5 32.8-12.5 45.3 0L480 274.7l41.4-41.4c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3L525.3 320l41.4 41.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L480 365.3l-41.4 41.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L434.7 320l-41.4-41.4c-12.5-12.5-12.5-32.8 0-45.3z"
     />
   </svg>
 );

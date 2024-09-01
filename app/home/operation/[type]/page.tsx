@@ -42,9 +42,7 @@ export default function Operation({
 
     if (!response.ok) {
       const statusCode = response.status;
-      if (statusCode == UNAUTHORIZED_CODE) {
-        router.push("/");
-      }
+
       if (statusCode == NOT_ACCEPTABLE_CODE) {
         setInsuficientStatus();
       }
@@ -87,12 +85,12 @@ export default function Operation({
           shadow="sm"
         >
           <div className="w-fit mx-auto flex">
-            <b className="text-gray-500 mr-2"> Result: </b>
+            <b className="text-default-500 mr-2"> Result: </b>
             <p className="text-blue-500 whitespace-pre-line">{result}</p>
           </div>
           <Divider className="my-2" />
           <div>
-            <b className="text-gray-500"> Operation Amount : </b>
+            <b className="text-default-500"> Operation Amount : </b>
             <p className="text-blue-500 inline">$ {amount}</p>
           </div>
         </Card>

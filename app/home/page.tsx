@@ -9,7 +9,7 @@ export default function Home() {
         <Link href={"/home/operation/math"}>
           <Card className={styles.card}>
             <h1>Calculator</h1>
-            <p>Use Calculator with operations :</p>
+            <p>Perform any of the following operations:</p>
             <ul>
               <li>Addition</li>
               <li>Subtraction</li>
@@ -22,7 +22,7 @@ export default function Home() {
         <Link href={"/home/operation/string-generator"}>
           <Card className={styles.card}>
             <h1> String Generator</h1>
-            <p>Create a Strings with params :</p>
+            <p>Create a strings using the following parameters:</p>
             <ul>
               <li>Number of rows</li>
               <li>Lenght</li>
@@ -34,8 +34,8 @@ export default function Home() {
         </Link>
         <Link href={"/home/records"}>
           <Card className={styles.card}>
-            <h1> Record Table</h1>
-            <p>Search the Historic Record :</p>
+            <h1> Record Table </h1>
+            <p>Keep track of your operations:</p>
             <ul>
               <li>Search By Operation</li>
               <li>Search By Date</li>

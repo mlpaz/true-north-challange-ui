@@ -61,7 +61,7 @@ export async function GET(req: NextRequest) {
   const statusCode = response.status;
   if (statusCode == UNAUTHORIZED_CODE) {
     await cookieMng.delete("session");
-    return NextResponse.json({}, { status: UNAUTHORIZED_CODE });
+    return NextResponse.redirect(new URL("/", req.url));
   }
   if (!response.ok) {
     const body: ErrorResponse = await response.json();

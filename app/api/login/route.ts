@@ -13,17 +13,17 @@ export async function POST(req: NextRequest) {
     },
     body: JSON.stringify(login),
   });
-  const body: IUserSession = await response.json();
   if (response.ok) {
+    const body: IUserSession = await response.json();
     cookieMng.set("session", JSON.stringify(body), {
       httpOnly: true,
       secure: true,
     });
+    return NextResponse.json({ credit: body.credit });
   } else {
     const errorResponse: ErrorResponse = {
       message: "Invalid Email or Password.",
     };
     return NextResponse.json(errorResponse, { status: 401 });
   }
-  return NextResponse.json({ credit: body.credit });
 }

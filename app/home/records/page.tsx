@@ -21,9 +21,16 @@ import { UUID } from "crypto";
 import { UNAUTHORIZED_CODE } from "@/types/statusCode";
 import { useRouter } from "next/navigation";
 import { Select, SelectItem } from "@nextui-org/select";
-import { mathOptions, OperationType } from "@/config/operation";
+import { mathIcons, mathOptions, OperationType } from "@/config/operation";
 import { DateValue } from "@react-types/datepicker";
 import { DatePicker } from "@nextui-org/date-picker";
+import { useDisclosure } from "@nextui-org/modal";
+
+import TableModal, {
+  DELETE_CONFIRMATION_MODAL,
+  DETAIL_MODAL,
+  ModalTye,
+} from "./modals";
 
 async function fetcher(
   input: RequestInfo,
@@ -35,16 +42,19 @@ async function fetcher(
 
 export default function Record() {
   const router = useRouter();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [operation, setOperation] = useState<OperationType>();
   const [startDate, setStartDate] = useState<DateValue>();
   const [endDate, setEndDate] = useState<DateValue>();
   const [page, setPage] = useState(1);
   const [rows, setRows] = useState(10);
   const [refresh, setRefresh] = useState(false);
+  const [modalRec, setModalRec] = useState<Rec>();
+  const [modalType, setModalType] = useState<ModalTye>();
 
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
     column: "date",
-    direction: "ascending",
+    direction: "descending",
   });
 
   let url =
@@ -104,12 +114,25 @@ export default function Record() {
         <div className="relative flex items-center justify-center gap-4">
           <Tooltip content="Details">
             <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-              <EyeIcon />
+              <EyeIcon
+                onClick={() => {
+                  setModalRec(rec);
+                  setModalType(DETAIL_MODAL);
+                  onOpen();
+                }}
+              />
             </span>
           </Tooltip>
           <Tooltip color="danger" content="Delete">
             <span className="text-lg text-danger cursor-pointer active:opacity-50">
-              <DeleteIcon onClick={() => deleteRecord(rec.id)} />
+              <DeleteIcon
+                onClick={() => {
+                  //deleteRecord(rec.id);
+                  setModalRec(rec);
+                  setModalType(DELETE_CONFIRMATION_MODAL);
+                  onOpen();
+                }}
+              />
             </span>
           </Tooltip>
         </div>
@@ -139,10 +162,16 @@ export default function Record() {
           placeholder="Select an operation"
           label="Operation"
           className={"max-w-[200px]"}
+          startContent={mathIcons.get(operation || "")?.icon}
           onChange={(e) => setOperation(e.target.value as OperationType)}
         >
           {mathOptions.map((mathOption) => (
-            <SelectItem key={mathOption.key}>{mathOption.label}</SelectItem>
+            <SelectItem
+              startContent={mathIcons.get(mathOption.key)?.icon}
+              key={mathOption.key}
+            >
+              {mathOption.label}
+            </SelectItem>
           ))}
         </Select>
         <DatePicker
@@ -202,6 +231,13 @@ export default function Record() {
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 ">
+      <TableModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        rec={modalRec}
+        modalType={modalType || DETAIL_MODAL}
+        handlerDelete={deleteRecord}
+      />
       <h1 className="text-3xl mb-6">Records</h1>
       <Table
         className="max-w-[1000px]"

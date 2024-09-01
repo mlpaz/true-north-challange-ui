@@ -1,3 +1,10 @@
+import {
+  AddIcon,
+  DivisionIcon,
+  MultiplicationIcon,
+  SquareRootIcon,
+  SubstractionIcon,
+} from "@/components/icons";
 export const ADDITION = "ADDITION",
   SUBTRACTION = "SUBTRACTION",
   MULTIPLICATION = "MULTIPLICATION",
@@ -21,3 +28,15 @@ export const mathOptions: SelectOptions<OperationType>[] = [
   { key: DIVISION, label: "Division" },
   { key: SQUARE_ROOT, label: "Square Root" },
 ];
+
+interface IIcon {
+  icon: React.ReactNode;
+}
+
+export const mathIcons: Map<string, IIcon> = new Map([
+  [ADDITION, { icon: <AddIcon className="mr-2" /> }],
+  [SUBTRACTION, { icon: <SubstractionIcon className="mr-2" /> }],
+  [MULTIPLICATION, { icon: <MultiplicationIcon className="mr-2" /> }],
+  [DIVISION, { icon: <DivisionIcon className="mr-2" /> }],
+  [SQUARE_ROOT, { icon: <SquareRootIcon className="mr-2" /> }],
+]);

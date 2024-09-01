@@ -7,6 +7,7 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UserCreditContext } from "@/components/UserCreditProvider";
+import styles from "./page.module.css";
 
 export default function Login() {
   const router = useRouter();

@@ -3,7 +3,12 @@ import { Card } from "@nextui-org/card";
 import { Input } from "@nextui-org/input";
 import * as React from "react";
 import { useState } from "react";
-import { mathOptions, OperationType, SQUARE_ROOT } from "@/config/operation";
+import {
+  mathIcons,
+  mathOptions,
+  OperationType,
+  SQUARE_ROOT,
+} from "@/config/operation";
 import { Select, SelectItem } from "@nextui-org/select";
 import { Button } from "@nextui-org/button";
 import { OperationRequest } from "@/types";
@@ -39,13 +44,19 @@ function MathForm({ handler }: { handler: any }) {
         required={true}
       />
       <Select
+        startContent={mathIcons.get(operation || "")?.icon}
         label="Select an operation"
         className={`max-w-xs ${isNotSquareRoot ? "mb-3" : "mb-5"}`}
         labelPlacement="outside"
         onChange={(e) => setOperation(e.target.value as OperationType)}
       >
         {mathOptions.map((mathOption) => (
-          <SelectItem key={mathOption.key}>{mathOption.label}</SelectItem>
+          <SelectItem
+            startContent={mathIcons.get(mathOption.key)?.icon}
+            key={mathOption.key}
+          >
+            {mathOption.label}
+          </SelectItem>
         ))}
       </Select>
       {isNotSquareRoot && (
