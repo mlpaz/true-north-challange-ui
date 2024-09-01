@@ -1,0 +1,26 @@
+.card {
+  padding: 1rem;
+  width: 300px;
+  transition: transform 1000ms;
+}
+
+.card h1 {
+  @apply text-blue-600;
+  margin-bottom: 1rem;
+  font-size: 1.5rem /* 24px */;
+  line-height: 2rem /* 32px */;
+  text-align: center;
+}
+.card p {
+  @apply text-default-600;
+  margin-bottom: 0.25rem;
+}
+.card ul {
+  @apply text-default-500;
+  margin-left: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.05);
+  transition: transform 400ms;
+}

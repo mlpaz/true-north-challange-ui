@@ -63,7 +63,7 @@ export default function Operation({
   const textColorClass =
     userCredit?.insuficient == true ? "text-red-600" : "text-blue-600";
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
+    <section className="flex flex-col items-center justify-center gap-4 ">
       <Card
         className="py-4 px-4 border-none bg-background/60 dark:bg-default-100/50 inline mb-6"
         isBlurred

@@ -201,8 +201,8 @@ export default function Record() {
   }, [data?.totalElements, page, pages, refresh]);
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <h1 className="text-3xl">Records</h1>
+    <section className="flex flex-col items-center justify-center gap-4 ">
+      <h1 className="text-3xl mb-6">Records</h1>
       <Table
         className="max-w-[1000px]"
         aria-label="Example table with client async pagination"
