@@ -1,8 +1,8 @@
 # Next.js & NextUI Template
 
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
+## Overview
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
+This project uses a template with Next.js 14 (app directory) and NextUI (v2).
 
 ## Technologies Used
 
