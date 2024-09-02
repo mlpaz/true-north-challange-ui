@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  apiBaseUrL: "https://demo-v1-1-5a33.onrender.com",
+  apiBaseUrL: process.env.API_URL,
   name: "True North Challenge",
   description: "Full Stack True North Challenge",
   navItems: [
